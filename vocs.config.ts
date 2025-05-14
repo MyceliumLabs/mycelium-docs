@@ -1,6 +1,8 @@
 import { defineConfig } from "vocs";
 import { sidebar } from "./sidebar";
 
+import { MYCELIUM_DOCS_URL } from "./constat";
+
 export default defineConfig({
   title: "mycelium",
   description:
@@ -28,9 +30,8 @@ export default defineConfig({
     dark: "/logo-mycelium-light.svg",
   },
   ogImageUrl: {
-    "/": "/og-image.png",
-    "/docs":
-      "https://vocs.dev/api/og?logo=%logo&title=%title&description=%description",
+    "/": `${MYCELIUM_DOCS_URL}/og-image.png`,
+    "/docs": `${MYCELIUM_DOCS_URL}/og-image.png`,
   },
   topNav: [
     { text: "Docs", link: "/docs/getting-started", match: "/docs" },
