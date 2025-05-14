@@ -1,0 +1,29 @@
+_cjs
+_esm
+_types
+*.local
+.DS_Store
+.attest
+.eslintcache
+.next
+bench
+cache
+coverage
+node_modules
+node_modules
+dist
+build
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.envrc
+
+# docs
+site/dist
+.vercel
+vocs.config.tsx.timestamp*
+vocs.config.ts.timestamp*
