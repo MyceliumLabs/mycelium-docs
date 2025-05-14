@@ -1,11 +1,12 @@
 {
-  "name": "site",
+  "name": "mycelium-docs",
   "version": "0.0.0",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "vocs dev",
     "build": "NODE_OPTIONS=\"--max-old-space-size=8192\" vocs build --searchIndex false && vocs search-index",
+    "docs:build": "vocs build",
     "preview": "vocs preview"
   },
   "dependencies": {
