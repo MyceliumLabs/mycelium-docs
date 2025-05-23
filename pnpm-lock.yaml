@@ -21,7 +21,7 @@ importers:
         specifier: latest
         version: 5.7.3
       vocs:
-        specifier: latest
+        specifier: 1.0.0-alpha.62
         version: 1.0.0-alpha.62(@types/node@22.13.4)(@types/react@19.0.8)(acorn@8.14.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rollup@4.34.6)(typescript@5.7.3)
 
 packages:

@@ -1,0 +1,177 @@
+---
+title: 'dvote System Documentation'
+description: 'A robust, decentralized voting solution for secure, private, and auditable decision-making processes'
+---
+
+# dvote System Documentation
+
+Welcome to the official documentation for the dvote system. dvote is a robust, decentralized voting solution designed for secure, private, and auditable decision-making processes within decentralized autonomous organizations (DAOs) and other web3 applications. By leveraging modular blockchain principles, dvote optimizes for efficiency, scalability, and enhanced decentralization.
+
+## Introduction
+
+In the evolving landscape of decentralized governance, secure, transparent, and private voting mechanisms are paramount. dvote addresses these needs by offering an off-chain voting system with on-chain trustless execution. It aims to reduce the high transaction costs associated with fully on-chain voting while maintaining the integrity and verifiability crucial for decentralized applications.
+
+### Key Features
+
+- **Off-chain Voting**: Reduces blockchain load and transaction fees
+- **On-chain Trustless Execution**: Guarantees vote integrity and verifiability using cryptographic proofs
+- **Modular Design**: Leverages specialized layers for data availability (Avail) and optional attestation/verification (EigenLayer AVS)
+- **Privacy-Preserving**: Designed to support private voting mechanisms, preventing coercion and vote buying
+- **Scalable**: Built to handle a higher volume of voting events than traditional on-chain methods
+
+## Architectural Overview
+
+The dvote system employs a modular blockchain architecture, allowing each component to focus on its specialized task, leading to improved scalability, cost-efficiency, and flexibility.
+
+![Alt text](/architecture.png "dvote architecture")
+
+## Core Components
+
+1. **User/Voter**: The end-user interacting with the system to participate in voting.
+
+2. **Key Generation Service**: Responsible for securely generating cryptographic key pairs (public and private keys) for users, essential for their identity and vote signing.
+
+3. **Census Management Service**: Manages voter registration, defining "censuses" (groups of eligible voters), and associating public keys with their respective voting weights.
+
+4. **Voting Process Logic**: Orchestrates the parameters of a specific vote, including the associated census, start/end timestamps, minimum participation thresholds, and the type of vote.
+
+5. **Vote Casting & Proof Generation**: The service where users submit their votes. It handles the encryption of votes and the generation of zero-knowledge proofs (e.g., ZK-SNARKs) to demonstrate the vote's validity without revealing its content.
+
+6. **Avail (Data Availability Layer)**: A specialized blockchain designed to provide secure, scalable, and cost-effective data availability.
+
+7. **EigenLayer AVS (Attestation & Verification Service)**: An optional, yet powerful, enhancement for trust.
+
+8. **Results Aggregation & Verification**: A backend service responsible for retrieving all necessary data from Avail, decrypting votes, aggregating tallies, and verifying the entire process.
+
+9. **Execution Layer**: The primary blockchain where final, verified vote results are ultimately settled.
+
+## The Role of Avail
+
+dvote uses Avail as its core Data Availability (DA) layer. This is a foundational design choice for efficiency and scalability.
+
+### Benefits
+
+- **Cost Reduction**: Posting large amounts of data to general-purpose execution blockchains is expensive
+- **Scalability**: High throughput ensures all necessary data remains available
+- **Decentralization**: Provides a decentralized guarantee of data availability
+
+## The Role of EigenLayer AVS
+
+Integrating EigenLayer AVS adds an extra layer of trust and security to the dvote system.
+
+### Features
+
+- **Enhanced Trust Minimization**: Leverages restaked ETH on EigenLayer
+- **Verifiable Computation**: Validates zero-knowledge proofs and vote tallies
+- **Simplified On-chain Settlement**: Provides secure attestation for final results
+
+## Getting Started
+
+To get started with dvote, follow these steps:
+
+1. **Generate Keys**: Users will first need to generate their cryptographic key pairs
+2. **Create/Join a Census**: Create a group of eligible voters
+3. **Create a Voting Process**: Define voting parameters and timeline
+4. **Cast Votes**: Submit votes via the API
+5. **Fetch & Verify Results**: Aggregate and verify votes after the voting period
+
+## API Reference
+
+The dvote API serves as the primary interface for interacting with the decentralized voting system.
+
+### Base URL
+
+```
+https://api.dvote.io/v1
+```
+
+### Common Schemas
+
+#### ApiResponse
+
+```typescript
+interface ApiResponse {
+  success: boolean;
+  msg: string;
+  data?: any;
+}
+```
+
+#### AddKeysReqSchema
+
+```typescript
+interface AddKeysReqSchema {
+  publicKeys: string[];
+  weights: number[];
+}
+```
+
+#### ProcessParamsSchema
+
+```typescript
+interface ProcessParamsSchema {
+  census_id: number;
+  starting_timestamp: number;
+  ending_timestamp: number;
+  min_participation: number; // 0-255
+  type: number; // 0-1
+}
+```
+
+#### VoteParamReqSchema
+
+```typescript
+interface VoteParamReqSchema {
+  privateKey: string;
+  publicKey: string;
+  weight: string;
+  process_id: string;
+  census_id: string;
+  avail_appID: string;
+  vote: number;
+}
+```
+
+### Endpoints
+
+#### Avail Data Fetching
+
+```typescript
+GET /avail-fetch/{blockHash}
+```
+
+#### Key Management
+
+```typescript
+GET /keys
+```
+
+#### Census Management
+
+```typescript
+POST /census
+GET /census/{census_id}
+POST /census/{census_id}
+POST /census/{census_id}/close
+```
+
+#### Process Management
+
+```typescript
+POST /process
+GET /process/{process_id}
+```
+
+#### Vote Casting
+
+```typescript
+POST /vote
+```
+
+## Contributing
+
+We welcome contributions to the dvote system. Please refer to our [Contributing Guidelines](CONTRIBUTING.md) for more information.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
