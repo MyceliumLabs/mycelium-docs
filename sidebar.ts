@@ -45,4 +45,13 @@ export const sidebar = [
       },
     ],
   },
+  {
+    text: "dVote",
+    items: [
+      {
+        text: "🗳️ System Documentation",
+        link: "/docs/dvote",
+      },
+    ],
+  },
 ];
