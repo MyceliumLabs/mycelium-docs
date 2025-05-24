@@ -46,11 +46,24 @@ export const sidebar = [
     ],
   },
   {
-    text: "dVote",
+    text: "Governance with dVote",
     items: [
       {
         text: "🗳️ System Documentation",
         link: "/docs/dvote",
+      },
+    ],
+  },
+  {
+    text: "Policies",
+    items: [
+      {
+        text: "Terms of Service",
+        link: "/docs/policies/terms-of-service",
+      },
+      {
+        text: "Privacy Policy",
+        link: "/docs/policies/privacy-policy",
       },
     ],
   },
