@@ -26,6 +26,10 @@ export const sidebar = [
         text: "🚀 Block Explorers",
         link: "/docs/tools/block-explorers",
       },
+      {
+        text: "🔍 Faucet",
+        link: "/docs/tools/faucet",
+      },
     ],
   },
   {
@@ -64,6 +68,10 @@ export const sidebar = [
       {
         text: "Privacy Policy",
         link: "/docs/policies/privacy-policy",
+      },
+      {
+        text: "USDC Bridging Compliance Policy",
+        link: "/docs/policies/usdc",
       },
     ],
   },
