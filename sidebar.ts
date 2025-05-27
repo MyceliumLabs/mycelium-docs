@@ -59,6 +59,15 @@ export const sidebar = [
     ],
   },
   {
+    text: "Agentic Roots and Automation",
+    items: [
+      {
+        text: "🌱 Agentic Roots",
+        link: "/docs/agentic-roots",
+      },
+    ],
+  },
+  {
     text: "Policies",
     items: [
       {
